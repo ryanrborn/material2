@@ -97,6 +97,9 @@ export class MatMonthView<D> implements AfterContentInit {
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
 
+  /** A function used to apply a custom style to dates */
+  @Input() customDateStyle: (date: D) => {[key: string]: string};
+
   /** Emits when a new date is selected. */
   @Output() readonly selectedChange: EventEmitter<D | null> = new EventEmitter<D | null>();
 
@@ -273,8 +276,9 @@ export class MatMonthView<D> implements AfterContentInit {
             this._dateAdapter.getMonth(this.activeDate), i + 1);
       const enabled = this._shouldEnableDate(date);
       const ariaLabel = this._dateAdapter.format(date, this._dateFormats.display.dateA11yLabel);
+      const customStyle = this.customDateStyle ? this.customDateStyle(date) : {};
       this._weeks[this._weeks.length - 1]
-          .push(new MatCalendarCell(i + 1, dateNames[i], ariaLabel, enabled));
+          .push(new MatCalendarCell(i + 1, dateNames[i], ariaLabel, enabled, customStyle));
     }
   }
 

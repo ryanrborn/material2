@@ -223,6 +223,9 @@ export class MatCalendar<D> implements AfterContentInit, AfterViewChecked, OnDes
   /** A function used to filter which dates are selectable. */
   @Input() dateFilter: (date: D) => boolean;
 
+  /** A function used to apply custom styling to dates. */
+  @Input() customDateStyle: (date: D) => {[key: string]: string};
+
   /** Emits when the currently selected date changes. */
   @Output() readonly selectedChange: EventEmitter<D> = new EventEmitter<D>();
 

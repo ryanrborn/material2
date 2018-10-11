@@ -26,7 +26,8 @@ export class MatCalendarCell {
   constructor(public value: number,
               public displayValue: string,
               public ariaLabel: string,
-              public enabled: boolean) {}
+              public enabled: boolean,
+              public customStyle: {[key: string]: string} = {}) {}
 }
 
 

@@ -56,6 +56,21 @@ export class DatepickerDemo {
   // pass custom header component type as input
   customHeader = CustomHeader;
   customHeaderNgContent = CustomHeaderNgContent;
+
+  getStyle(d: Date | null): {[key: string]: string} {
+    if (d == null) {
+      return {};
+    }
+    if (d.getDate() % 2) {
+      return {
+        'background-color': 'rgba(97, 176, 18, .2)'
+      };
+    } else {
+      return {
+        'background-color': 'rgba(208, 2, 27, .2)'
+      };
+    }
+  }
 }
 
 // Custom header component for datepicker

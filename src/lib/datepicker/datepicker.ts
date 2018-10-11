@@ -247,6 +247,10 @@ export class MatDatepicker<D> implements OnDestroy, CanColor {
     return this._datepickerInput && this._datepickerInput._dateFilter;
   }
 
+  get _customDateStyle(): (date: D | null) => {[key: string]: string} {
+    return this._datepickerInput && this._datepickerInput._customDateStyle;
+  }
+
   /** A reference to the overlay when the calendar is opened as a popup. */
   _popupRef: OverlayRef;
 

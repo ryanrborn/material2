@@ -121,6 +121,14 @@ export class MatDatepickerInput<D> implements ControlValueAccessor, OnDestroy, V
   }
   _dateFilter: (date: D | null) => boolean;
 
+  /** Function that can be used to apply custom styling to dates. */
+  @Input()
+  set matCustomDateStyle(value: (date: D | null) => {[key: string]: string}) {
+    this._customDateStyle = value;
+    this._validatorOnChange();
+  }
+  _customDateStyle: (date: D | null) => {[key: string]: string};
+
   /** The value of the input. */
   @Input()
   get value(): D | null { return this._value; }

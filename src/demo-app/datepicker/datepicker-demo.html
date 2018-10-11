@@ -164,3 +164,13 @@
     <mat-datepicker #customHeaderNgContentPicker [calendarHeaderComponent]="customHeaderNgContent"></mat-datepicker>
   </mat-form-field>
 </p>
+
+<h2>Datepicker with custom date style</h2>
+<p>
+  <mat-form-field>
+    <mat-label>Custom date style</mat-label>
+    <input matInput [matDatepicker]="customViewCalendar" [matCustomDateStyle]="getStyle">
+    <mat-datepicker-toggle matSuffix [for]="customViewCalendar"></mat-datepicker-toggle>
+    <mat-datepicker #customViewCalendar></mat-datepicker>
+  </mat-form-field>
+</p>
