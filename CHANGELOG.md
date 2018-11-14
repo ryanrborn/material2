@@ -1,3 +1,71 @@
+<a name="7.0.4"></a>
+## 7.0.4 "brick-dress" (2018-11-13)
+
+
+### Bug Fixes
+
+* **a11y:** aria-live directive announcing the same text multiple times ([#13467](https://github.com/angular/material2/issues/13467)) ([7c2a095](https://github.com/angular/material2/commit/7c2a095))
+* **a11y:** avoid overlapping or left over timers in live announcer ([#13602](https://github.com/angular/material2/issues/13602)) ([a93d3a5](https://github.com/angular/material2/commit/a93d3a5))
+* **a11y:** key manager preventing arrow key events with modifier keys ([#13503](https://github.com/angular/material2/issues/13503)) ([b7ef6af](https://github.com/angular/material2/commit/b7ef6af)), closes [#11987](https://github.com/angular/material2/issues/11987) [#13496](https://github.com/angular/material2/issues/13496)
+* **bazel:** theming bundle not exposed as sass_library ([#14071](https://github.com/angular/material2/issues/14071)) ([71c205e](https://github.com/angular/material2/commit/71c205e))
+* **bidi:** preserve user dir attribute ([#13859](https://github.com/angular/material2/issues/13859)) ([86089fe](https://github.com/angular/material2/commit/86089fe)), closes [#13855](https://github.com/angular/material2/issues/13855)
+* **button:** ripple color not correct for standard, icon and stroked buttons ([#13235](https://github.com/angular/material2/issues/13235)) ([62c6d55](https://github.com/angular/material2/commit/62c6d55)), closes [#13232](https://github.com/angular/material2/issues/13232)
+* **button-toggle:** not forwarding focus to underlying control ([#14001](https://github.com/angular/material2/issues/14001)) ([b7be573](https://github.com/angular/material2/commit/b7be573))
+* **button-toggle:** svg icon not align inside toggle ([#13839](https://github.com/angular/material2/issues/13839)) ([2814a99](https://github.com/angular/material2/commit/2814a99)), closes [#13726](https://github.com/angular/material2/issues/13726)
+* **checkbox:** no focus indicator in high contrast ([#13255](https://github.com/angular/material2/issues/13255)) ([13d9d3a](https://github.com/angular/material2/commit/13d9d3a)), closes [#13227](https://github.com/angular/material2/issues/13227)
+* **chips:** invalid ripple color for selected chips ([#13271](https://github.com/angular/material2/issues/13271)) ([057eee1](https://github.com/angular/material2/commit/057eee1))
+* **datepicker:** toggle not forwarding focus to underlying button ([#14020](https://github.com/angular/material2/issues/14020)) ([723d7f5](https://github.com/angular/material2/commit/723d7f5))
+* **datepicker:** unable to disable ripple on datepicker toggle ([#13997](https://github.com/angular/material2/issues/13997)) ([2fb58ab](https://github.com/angular/material2/commit/2fb58ab)), closes [#13986](https://github.com/angular/material2/issues/13986)
+* **drag-drop:** avoid disrupting drag sequence if event propagation is stopped ([#13841](https://github.com/angular/material2/issues/13841)) ([2902d0b](https://github.com/angular/material2/commit/2902d0b))
+* **drag-drop:** avoid generating elements with duplicate ids ([#13489](https://github.com/angular/material2/issues/13489)) ([905f0b4](https://github.com/angular/material2/commit/905f0b4))
+* **drag-drop:** avoid interference from native drag&drop ([#14054](https://github.com/angular/material2/issues/14054)) ([8dcbee2](https://github.com/angular/material2/commit/8dcbee2))
+* **drag-drop:** enable drag interactions when there is a drag handle ([#13780](https://github.com/angular/material2/issues/13780)) ([0d3b74a](https://github.com/angular/material2/commit/0d3b74a)), closes [#13779](https://github.com/angular/material2/issues/13779)
+* **drag-drop:** error if drag item is destroyed zone has stabilized ([#13978](https://github.com/angular/material2/issues/13978)) ([40a63cf](https://github.com/angular/material2/commit/40a63cf))
+* **drag-drop:** ignore enter predicate when returning item to its initial container ([#13972](https://github.com/angular/material2/issues/13972)) ([3fb5522](https://github.com/angular/material2/commit/3fb5522))
+* **drag-drop:** prevent mouse wheel scrolling while dragging ([#13524](https://github.com/angular/material2/issues/13524)) ([718d306](https://github.com/angular/material2/commit/718d306)), closes [#13508](https://github.com/angular/material2/issues/13508)
+* **drag-drop:** add directive to connect drop lists automatically ([#13754](https://github.com/angular/material2/issues/13754)) ([e905127](https://github.com/angular/material2/commit/e905127)), closes [#13750](https://github.com/angular/material2/issues/13750)
+* **focus-trap:** warn if initial element is not focusable ([#13960](https://github.com/angular/material2/issues/13960)) ([3026138](https://github.com/angular/material2/commit/3026138)), closes [#13953](https://github.com/angular/material2/issues/13953)
+* **icon:** account for query params when prefixing external references ([#13930](https://github.com/angular/material2/issues/13930)) ([90420d6](https://github.com/angular/material2/commit/90420d6)), closes [#13924](https://github.com/angular/material2/issues/13924)
+* **menu:** use passive touch listener ([#14041](https://github.com/angular/material2/issues/14041)) ([f5006d6](https://github.com/angular/material2/commit/f5006d6))
+* **progress-bar:** account for query params when prefixing references ([#13942](https://github.com/angular/material2/issues/13942)) ([eb82847](https://github.com/angular/material2/commit/eb82847)), closes [#13930](https://github.com/angular/material2/issues/13930)
+* **scrolling:** leaking subscription if same element is registered multiple times ([#13974](https://github.com/angular/material2/issues/13974)) ([1a7173d](https://github.com/angular/material2/commit/1a7173d))
+* **slide-toggle:** redirect focus to underlying input element ([#13957](https://github.com/angular/material2/issues/13957)) ([1d4be69](https://github.com/angular/material2/commit/1d4be69)), closes [#13953](https://github.com/angular/material2/issues/13953)
+* **slide-toggle:** showing focus ripple when clicking disabled control ([#14055](https://github.com/angular/material2/issues/14055)) ([a2c2caf](https://github.com/angular/material2/commit/a2c2caf)), closes [#13957](https://github.com/angular/material2/issues/13957)
+* **snackbar:** set aria role based on if announcement message is provided ([#13993](https://github.com/angular/material2/issues/13993)) ([199583b](https://github.com/angular/material2/commit/199583b))
+* **stepper:** fix text contrast ratio of stepper labels ([#14012](https://github.com/angular/material2/issues/14012)) ([01605d0](https://github.com/angular/material2/commit/01605d0))
+
+
+
+<a name="7.0.3"></a>
+## 7.0.3 "lyrium-longboard" (2018-11-06)
+
+
+### Bug Fixes
+
+* **breakpoints:** set max-widths for breakpoints to non-integers to handle subpixel queries ([#13828](https://github.com/angular/material2/issues/13828)) ([b88b79d](https://github.com/angular/material2/commit/b88b79d))
+* **button:** stroked button crops applied badges ([#13912](https://github.com/angular/material2/issues/13912)) ([835dc9e](https://github.com/angular/material2/commit/835dc9e)), closes [#13909](https://github.com/angular/material2/issues/13909)
+* **button-toggle:** remove hover state on touch devices ([#13724](https://github.com/angular/material2/issues/13724)) ([f9d5fb4](https://github.com/angular/material2/commit/f9d5fb4))
+* **chips:** remove circular dependency between chip-list and chip-input ([#13994](https://github.com/angular/material2/issues/13994)) ([3da858d](https://github.com/angular/material2/commit/3da858d))
+* **dialog,bottom-sheet:** enter animation blocking child animations ([#13888](https://github.com/angular/material2/issues/13888)) ([e5afa48](https://github.com/angular/material2/commit/e5afa48)), closes [#13870](https://github.com/angular/material2/issues/13870)
+* **drag-drop:** drop list not toggling dragging class inside component with OnPush change detection ([#13703](https://github.com/angular/material2/issues/13703)) ([4e50d4a](https://github.com/angular/material2/commit/4e50d4a)), closes [#13680](https://github.com/angular/material2/issues/13680)
+* **drag-drop:** incorrectly laying out items with different height or margins ([#13849](https://github.com/angular/material2/issues/13849)) ([c509591](https://github.com/angular/material2/commit/c509591)), closes [#13483](https://github.com/angular/material2/issues/13483)
+* **drag-drop:** multiple parallel drag sequences when dragging nested drag items ([#13820](https://github.com/angular/material2/issues/13820)) ([cdc0c8b](https://github.com/angular/material2/commit/cdc0c8b))
+* **list:** add ripples to action list items ([#13799](https://github.com/angular/material2/issues/13799)) ([b293655](https://github.com/angular/material2/commit/b293655)), closes [#13795](https://github.com/angular/material2/issues/13795)
+* **list:** remove disabled selection list hover feedback on mobile ([#13850](https://github.com/angular/material2/issues/13850)) ([e975223](https://github.com/angular/material2/commit/e975223))
+* **menu:** unable to swap menu panel after first open ([#13819](https://github.com/angular/material2/issues/13819)) ([cbb76ec](https://github.com/angular/material2/commit/cbb76ec)), closes [#13812](https://github.com/angular/material2/issues/13812)
+* **ng-update:** do not fail if [@schematics](https://github.com/schematics)/angular version is outdated ([#13929](https://github.com/angular/material2/issues/13929)) ([f10f8b9](https://github.com/angular/material2/commit/f10f8b9))
+* **ng-update:** do not throw if typescript version is outdated ([#13927](https://github.com/angular/material2/issues/13927)) ([d44fcf8](https://github.com/angular/material2/commit/d44fcf8))
+* **portal:** use portal's ComponentFactoryResolver in portal outlet directive ([#13886](https://github.com/angular/material2/issues/13886)) ([d2af80b](https://github.com/angular/material2/commit/d2af80b)), closes [#12677](https://github.com/angular/material2/issues/12677) [#9712](https://github.com/angular/material2/issues/9712)
+* **snack-bar:** set appropriate role based on passed in politeness ([#13864](https://github.com/angular/material2/issues/13864)) ([33d3cb3](https://github.com/angular/material2/commit/33d3cb3)), closes [#13493](https://github.com/angular/material2/issues/13493)
+* **snackbar:** override min-width of snackbar on mobile ([#13880](https://github.com/angular/material2/issues/13880)) ([41cb8aa](https://github.com/angular/material2/commit/41cb8aa))
+* **stepper:** don't handle enter/space when modifier key is pressed ([#13827](https://github.com/angular/material2/issues/13827)) ([0bd3890](https://github.com/angular/material2/commit/0bd3890)), closes [#13790](https://github.com/angular/material2/issues/13790)
+* **tabs:** duplicate animation events on some browsers ([#13674](https://github.com/angular/material2/issues/13674)) ([7106681](https://github.com/angular/material2/commit/7106681))
+* **tabs:** mat-align-tabs not working on mat-tab-nav-bar ([#13818](https://github.com/angular/material2/issues/13818)) ([2289e43](https://github.com/angular/material2/commit/2289e43)), closes [#13798](https://github.com/angular/material2/issues/13798)
+* **virtual-scroll:** not removing view from container if it's outside the template cache ([#13916](https://github.com/angular/material2/issues/13916)) ([7c202ec](https://github.com/angular/material2/commit/7c202ec)), closes [#13901](https://github.com/angular/material2/issues/13901)
+* bazel support for downstream apps ([#13836](https://github.com/angular/material2/issues/13836)) ([61dbd26](https://github.com/angular/material2/commit/61dbd26))
+
+
+
 <a name="7.0.2"></a>
 ## 7.0.2 limestone-linguine (2018-10-26)
 

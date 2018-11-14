@@ -64,7 +64,7 @@ var_9: &docker-firefox-image
 # https://circleci.com/docs/2.0/workflows/#using-workspaces-to-share-data-among-jobs
 var_10: &attach_release_output
   attach_workspace:
-      at: dist/releases
+    at: dist/releases
 
 # -----------------------------
 # Container version of CircleCI
@@ -140,6 +140,23 @@ jobs:
 
       - run: ./scripts/circleci/run-browserstack-tests.sh
 
+  # ----------------------------------------------------------------------------
+  # Job that runs the unit tests on Saucelabs. The browsers that will be used
+  # to run the unit tests on Saucelabs are set in: test/browser-providers.js
+  # ----------------------------------------------------------------------------
+  tests_saucelabs:
+    <<: *job_defaults
+    resource_class: xlarge
+    environment:
+      SAUCE_USERNAME: "angular-ci"
+      SAUCE_ACCESS_KEY: "9b988f434ff8-fbca-8aa4-4ae3-35442987"
+    steps:
+    - *checkout_code
+    - *restore_cache
+    - *yarn_install
+
+    - run: ./scripts/circleci/run-saucelabs-tests.sh
+
   # -----------------------------------------------------------------------------------------
   # Job that builds the demo-app with AOT. In order to speed up this job, the release output
   # from the workspace storage will be attached to this job.
@@ -200,6 +217,29 @@ jobs:
           paths:
             - "**/*"
 
+      # Since there is no UMD bundle that includes everything from the CDK, we need to move
+      # all bundles into a directory. This allows us to store all CDK UMD bundles as job
+      # artifacts that can be picked up by the Angular Github bot.
+      - run:
+          name: Prepare CDK artifacts for publish.
+          command: |
+            mkdir -p  /tmp/cdk-umd-artifacts
+            cp dist/releases/cdk/bundles/*.umd.js /tmp/cdk-umd-artifacts
+
+      # Publish bundle artifacts which will be used to calculate the size change.
+      # Note: Make sure that the size plugin from the Angular robot fetches the artifacts
+      # from this CircleCI job (see .github/angular-robot.yml). Additionally any artifacts need to
+      # be stored with the following path format: "{projectName}/{context}/{fileName}"
+      # This format is necessary because otherwise the bot is not able to pick up the
+      # artifacts from CircleCI. See:
+      # https://github.com/angular/github-robot/blob/master/functions/src/plugins/size.ts#L392-L394
+      - store_artifacts:
+          path: dist/releases/material/bundles/material.umd.js
+          destination: /angular_material/material_release_output/material.umd.js
+      - store_artifacts:
+          path: /tmp/cdk-umd-artifacts
+          destination: /angular_material/cdk_release_output/
+
       - *save_cache
 
   # ----------------------------------------
@@ -219,6 +259,11 @@ jobs:
       - *restore_cache
       - *yarn_install
       - *attach_release_output
+
+      # CircleCI has a config setting to enforce SSH for all github connections.
+      # This is not compatible with our mechanism of using a Personal Access Token
+      # to publish the build snapshots. In order to fix this, we unset the global option.
+      - run: git config --global --unset "url.ssh://git@github.com.insteadof"
 
       - run: ./scripts/circleci/publish-snapshots.sh
 
@@ -244,6 +289,7 @@ workflows:
     jobs:
       - tests_local_browsers
       - tests_browserstack
+      - tests_saucelabs
 
   integration_tests:
     jobs:
@@ -272,6 +318,7 @@ general:
   branches:
     only:
       - master
+      - 7.0.x
       # 5.2.x, 6.0.x, etc
       - /\d+\.\d+\.x/
       # 5.x, 6.x, etc

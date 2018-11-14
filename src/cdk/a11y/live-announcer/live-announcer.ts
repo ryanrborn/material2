@@ -29,8 +29,9 @@ export type AriaLivePoliteness = 'off' | 'polite' | 'assertive';
 
 @Injectable({providedIn: 'root'})
 export class LiveAnnouncer implements OnDestroy {
-  private readonly _liveElement: HTMLElement;
+  private _liveElement: HTMLElement;
   private _document: Document;
+  private _previousTimeout?: number;
 
   constructor(
       @Optional() @Inject(LIVE_ANNOUNCER_ELEMENT_TOKEN) elementToken: any,
@@ -63,7 +64,8 @@ export class LiveAnnouncer implements OnDestroy {
     // (using JAWS 17 at time of this writing).
     return this._ngZone.runOutsideAngular(() => {
       return new Promise(resolve => {
-        setTimeout(() => {
+        clearTimeout(this._previousTimeout);
+        this._previousTimeout = setTimeout(() => {
           this._liveElement.textContent = message;
           resolve();
         }, 100);
@@ -72,8 +74,11 @@ export class LiveAnnouncer implements OnDestroy {
   }
 
   ngOnDestroy() {
+    clearTimeout(this._previousTimeout);
+
     if (this._liveElement && this._liveElement.parentNode) {
       this._liveElement.parentNode.removeChild(this._liveElement);
+      this._liveElement = null!;
     }
   }
 
@@ -126,14 +131,21 @@ export class CdkAriaLive implements OnDestroy {
           .observe(this._elementRef)
           .subscribe(() => {
             // Note that we use textContent here, rather than innerText, in order to avoid a reflow.
-            const element = this._elementRef.nativeElement;
-            this._liveAnnouncer.announce(element.textContent, this._politeness);
+            const elementText = this._elementRef.nativeElement.textContent;
+
+            // The `MutationObserver` fires also for attribute
+            // changes which we don't want to announce.
+            if (elementText !== this._previousAnnouncedText) {
+              this._liveAnnouncer.announce(elementText, this._politeness);
+              this._previousAnnouncedText = elementText;
+            }
           });
       });
     }
   }
   private _politeness: AriaLivePoliteness = 'off';
 
+  private _previousAnnouncedText?: string;
   private _subscription: Subscription | null;
 
   constructor(private _elementRef: ElementRef, private _liveAnnouncer: LiveAnnouncer,
